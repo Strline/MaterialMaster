@@ -1,0 +1,157 @@
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW_MATERIAL_MASTER_SRV" xml:lang="en" sap:schema-version="1"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BaseUnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit Of Measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ProductGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Material Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductGroupText" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Matl Grp Desc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ArcticleCategory" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Arcticle Category" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Material type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProductTypeText" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Mat.Type Descr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BatchMngmRequried" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Batch Management Required" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Marked for Deletion" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="MaterialToUnitsOfMeasure" Relationship="ZGW_MATERIAL_MASTER_SRV.MaterialToUnitsOfMeasure" FromRole="FromRole_MaterialToUnitsOfMeasure" ToRole="ToRole_MaterialToUnitsOfMeasure"/>
+                <NavigationProperty Name="MaterialToPlants" Relationship="ZGW_MATERIAL_MASTER_SRV.MaterialToPlants" FromRole="FromRole_MaterialToPlants" ToRole="ToRole_MaterialToPlants"/>
+                <NavigationProperty Name="MaterialToTexts" Relationship="ZGW_MATERIAL_MASTER_SRV.MaterialToTexts" FromRole="FromRole_MaterialToTexts" ToRole="ToRole_MaterialToTexts"/>
+                <NavigationProperty Name="MaterialToStorageLocations" Relationship="ZGW_MATERIAL_MASTER_SRV.MaterialToStorageLocations" FromRole="FromRole_MaterialToStorageLocations" ToRole="ToRole_MaterialToStorageLocations"/>
+            </EntityType>
+            <EntityType Name="MaterialUnitsOfMeasure" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                    <PropertyRef Name="UnitOfMeasure"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit of Measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="UnitOfMeasureText" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Meas. unit text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialPlants" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlantText" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="PlantText" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchasingGroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Purch. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PurchasingGroupText" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Purch. Group Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stock" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="UnitOfMeasure" sap:label="Safety stock" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Sel. Main Crit." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialStorageLocations" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="StorageLocation"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlantText" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Plant Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StorageLocation" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Stor. Loc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StorageLocationText" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Stor.Loc.Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StorageBin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Storage Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProfitCenter" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Profit Center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stock" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="UnitOfMeasure" sap:label="Unrestricted Stock" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Sel. Main Crit." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="MaterialTexts" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                    <PropertyRef Name="Language"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MaterialText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="MaterialToPlants" sap:content-version="1">
+                <End Type="ZGW_MATERIAL_MASTER_SRV.Material" Multiplicity="0..1" Role="FromRole_MaterialToPlants"/>
+                <End Type="ZGW_MATERIAL_MASTER_SRV.MaterialPlants" Multiplicity="*" Role="ToRole_MaterialToPlants"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToPlants">
+                        <PropertyRef Name="MaterialId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToPlants">
+                        <PropertyRef Name="MaterialId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MaterialToStorageLocations" sap:content-version="1">
+                <End Type="ZGW_MATERIAL_MASTER_SRV.Material" Multiplicity="0..1" Role="FromRole_MaterialToStorageLocations"/>
+                <End Type="ZGW_MATERIAL_MASTER_SRV.MaterialStorageLocations" Multiplicity="*" Role="ToRole_MaterialToStorageLocations"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToStorageLocations">
+                        <PropertyRef Name="MaterialId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToStorageLocations">
+                        <PropertyRef Name="MaterialId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MaterialToTexts" sap:content-version="1">
+                <End Type="ZGW_MATERIAL_MASTER_SRV.Material" Multiplicity="0..1" Role="FromRole_MaterialToTexts"/>
+                <End Type="ZGW_MATERIAL_MASTER_SRV.MaterialTexts" Multiplicity="*" Role="ToRole_MaterialToTexts"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToTexts">
+                        <PropertyRef Name="MaterialId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToTexts">
+                        <PropertyRef Name="MaterialId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MaterialToUnitsOfMeasure" sap:content-version="1">
+                <End Type="ZGW_MATERIAL_MASTER_SRV.Material" Multiplicity="0..1" Role="FromRole_MaterialToUnitsOfMeasure"/>
+                <End Type="ZGW_MATERIAL_MASTER_SRV.MaterialUnitsOfMeasure" Multiplicity="*" Role="ToRole_MaterialToUnitsOfMeasure"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MaterialToUnitsOfMeasure">
+                        <PropertyRef Name="MaterialId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MaterialToUnitsOfMeasure">
+                        <PropertyRef Name="MaterialId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGW_MATERIAL_MASTER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="MaterialSet" EntityType="ZGW_MATERIAL_MASTER_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialUnitsOfMeasureSet" EntityType="ZGW_MATERIAL_MASTER_SRV.MaterialUnitsOfMeasure" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialPlantsSet" EntityType="ZGW_MATERIAL_MASTER_SRV.MaterialPlants" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialStorageLocationsSet" EntityType="ZGW_MATERIAL_MASTER_SRV.MaterialStorageLocations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialTextsSet" EntityType="ZGW_MATERIAL_MASTER_SRV.MaterialTexts" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="MaterialToUnitsOfMeasureSet" Association="ZGW_MATERIAL_MASTER_SRV.MaterialToUnitsOfMeasure" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_MaterialToUnitsOfMeasure"/>
+                    <End EntitySet="MaterialUnitsOfMeasureSet" Role="ToRole_MaterialToUnitsOfMeasure"/>
+                </AssociationSet>
+                <AssociationSet Name="MaterialToTextsSet" Association="ZGW_MATERIAL_MASTER_SRV.MaterialToTexts" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_MaterialToTexts"/>
+                    <End EntitySet="MaterialTextsSet" Role="ToRole_MaterialToTexts"/>
+                </AssociationSet>
+                <AssociationSet Name="MaterialToPlantsSet" Association="ZGW_MATERIAL_MASTER_SRV.MaterialToPlants" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_MaterialToPlants"/>
+                    <End EntitySet="MaterialPlantsSet" Role="ToRole_MaterialToPlants"/>
+                </AssociationSet>
+                <AssociationSet Name="MaterialToStorageLocationsSet" Association="ZGW_MATERIAL_MASTER_SRV.MaterialToStorageLocations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_MaterialToStorageLocations"/>
+                    <End EntitySet="MaterialStorageLocationsSet" Role="ToRole_MaterialToStorageLocations"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="./sap/opu/odata/sap/ZGW_MATERIAL_MASTER_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+                <atom:link rel="latest-version" href="./sap/opu/odata/sap/ZGW_MATERIAL_MASTER_SRV/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
